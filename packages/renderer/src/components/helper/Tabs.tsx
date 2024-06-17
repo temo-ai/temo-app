@@ -22,10 +22,10 @@ const Tabs = () => {
   };
 
   return (
-    <div className="flex gap-2 pt-0 h-[48px] items-center top-0 max-w-[100vw] overflow-x-scroll">
+    <nav className="flex gap-2 pb-2 items-center max-w-[100vw] overflow-x-scroll">
       <HomeTab
         onSelect={() => setCurrentTabId(0)}
-        isActive={currentTabId === 0}
+        isActive={currentTabId === null || currentTabId === 0}
       />
       {tabs?.map((tab, index) => (
         <StandardTab
@@ -36,7 +36,7 @@ const Tabs = () => {
           onClose={() => handleTabClose(tab?.id, index)}
         />
       ))}
-    </div>
+    </nav>
   );
 };
 
@@ -81,14 +81,16 @@ const Tab: React.FC<{
   };
 
   const tabButtonClasses = cn(
-    'flex items-center group justify-between gap-4 px-[10px] text-foreground rounded-lg text-xs bg-[#0d0e130a] hover:bg-[#0d0e1312] transition h-[30px]',
+    'flex items-center group justify-between gap-4 text-foreground rounded-lg text-xs bg-[#0d0e130a] hover:bg-secondary transition',
     {
       'bg-background shadow-[0_0_0_0.5px_rgba(0,0,0,0.12),0_2px_3px_0_rgba(103,110,144,0.12)] hover:bg-background':
         isActive,
-      'h-8': isHome,
     },
     {
       'w-[220px]': !isHome,
+    },
+    {
+      'px-4': isHome,
     },
   );
 
@@ -96,7 +98,7 @@ const Tab: React.FC<{
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="flex flex-col group transition-all"
+      className="flex flex-col group transition-all no-drag"
     >
       <Button
         className={tabButtonClasses}

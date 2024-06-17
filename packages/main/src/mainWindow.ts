@@ -10,7 +10,12 @@ unhandled();
 async function createWindow() {
   const baseWindow = new BaseWindow({
     width: 1920,
+    minHeight: 720,
+    minWidth: 1280,
     height: 1080,
+    frame: false,
+    // titleBarStyle: 'hidden',
+
     // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
   });
 
@@ -37,12 +42,12 @@ async function createWindow() {
     }
   });
   if (import.meta.env.DEV) {
-    // temoView.webContents.openDevTools();
+    temoView.webContents.openDevTools();
   }
 
   baseWindow.on('resize', () => {
     const {width, height} = baseWindow.getBounds();
-    temoView.setBounds({x: 0, y: 0, width, height: height - 20});
+    temoView.setBounds({x: 0, y: 0, width, height: height});
   });
 
   if (import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined) {
@@ -53,7 +58,7 @@ async function createWindow() {
     );
   }
   baseWindow.contentView.addChildView(temoView);
-  temoView.setBounds({x: 0, y: 0, width: 1920, height: 1052});
+  temoView.setBounds({x: 0, y: 0, width: 1920, height: 1080});
 
   try {
     await db.read();

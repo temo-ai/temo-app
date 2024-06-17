@@ -18,9 +18,10 @@ import {
 import {Edit3, SortDescIcon, Clock, LucideText} from 'lucide-react';
 import {Button} from '../ui/button';
 import {onTemoChanged} from '#preload';
+import type {Temo} from '../../utils/atoms';
 
 // Main component
-const CardGrid = ({recent = false}) => {
+const CardGrid = ({recent = false}: {recent?: boolean}) => {
   const temos = useAtomValue(allTemosAtom);
   const selectedFolderId = useAtomValue(selectedFolderIdAtom);
   const [published, setPublished] = useAtom(publishedAtom);
@@ -45,7 +46,7 @@ const CardGrid = ({recent = false}) => {
       : publishedTemos;
   };
 
-  const getSortedTemos = temosArray => {
+  const getSortedTemos = (temosArray: Temo[]) => {
     return temosArray.sort((a, b) => {
       if (sortOrder === 'updatedAt' || sortOrder === 'createdAt') {
         return new Date(b[sortOrder]).getTime() - new Date(a[sortOrder]).getTime();
@@ -63,7 +64,7 @@ const CardGrid = ({recent = false}) => {
       className="flex flex-1 flex-col space-y-4 overflow-y-auto"
       key={selectedFolderId}
     >
-      <div className="p-4 md:p-10 lg:p-20 mx-auto w-full">
+      <div className="p-4 md:p-10 lg:p-20 mx-auto w-full flex flex-col gap-8">
         <div className="flex justify-between w-full">
           <Header recent={recent} />
           {!recent && (
