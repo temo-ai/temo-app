@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "node": false
+  },
+  "extends": ["plugin:react/recommended", "plugin:react/jsx-runtime"],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    /** These rules are disabled because they are incompatible with prettier */
+    "@typescript-eslint/no-explicit-any": "off",
+    // Note: you must disable the base rule as it can report incorrect errors
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}
