@@ -1,7 +1,5 @@
 import {systemPreferences, shell, dialog, app} from 'electron';
-import {hasScreenCapturePermission, hasPromptedForPermission} from 'mac-screen-capture-permissions';
 import {ensureDockIsShowing} from './dock';
-
 let isDialogShowing = false;
 
 const promptSystemPreferences =
@@ -70,23 +68,33 @@ export const hasMicrophoneAccess = () => getMicrophoneAccess() === 'granted';
 
 // Screen Capture (10.15 and newer)
 
+const getScreenCaptureAccess = () => systemPreferences.getMediaAccessStatus('screen');
+
 const screenCaptureFallback = promptSystemPreferences({
   message: 'Temo cannot record the screen.',
   detail:
     'Temo requires screen capture access to be able to record the screen. You can grant this in the System Preferences. Afterwards, launch Temo for the changes to take effect.',
-  systemPreferencesPath: ' ',
+  systemPreferencesPath: 'Privacy_ScreenCapture',
 });
 
-export const ensureScreenCapturePermissions = () => {
-  const hadAsked = hasPromptedForPermission();
-  const hasAccess = hasScreenCapturePermission();
+export const ensureScreenCapturePermissions = async (fallback = screenCaptureFallback) => {
+  const access = getScreenCaptureAccess();
 
-  if (hasAccess) {
+  if (access === 'granted') {
     return true;
   }
 
-  screenCaptureFallback({hasAsked: !hadAsked});
-  return false;
+  if (access !== 'denied') {
+    const granted = systemPreferences.getMediaAccessStatus('screen');
+
+    if (granted) {
+      return true;
+    }
+
+    return fallback({hasAsked: true});
+  }
+
+  return fallback();
 };
 
-export const hasScreenCaptureAccess = () => hasScreenCapturePermission();
+export const hasScreenCaptureAccess = () => getScreenCaptureAccess() === 'granted';

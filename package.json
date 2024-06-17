@@ -118,7 +118,6 @@
     "langchain": "^0.1.36",
     "lowdb": "^7.0.1",
     "lucide-react": "^0.334.0",
-    "mac-screen-capture-permissions": "^2.1.0",
     "novel": "^0.1.22",
     "openai": "^4.36.0",
     "react": "^18.3.1",
