@@ -1,11 +1,11 @@
 import {mkdir, writeFile} from 'fs/promises';
 import {join} from 'path';
 import fs from 'fs';
-import type {BrowserView} from 'electron';
+import type {WebContentsView} from 'electron';
 import {resizeAndSaveImage} from './resizeAndSaveImage';
 import {getFilePaths} from './getFilePaths';
 
-export async function saveThumbnail(view: BrowserView, sessionId: string) {
+export async function saveThumbnail(view: WebContentsView, sessionId: string) {
   try {
     const {thumbnailFileDir} = getFilePaths(sessionId);
     if (!fs.existsSync(thumbnailFileDir)) {

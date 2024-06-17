@@ -54,7 +54,7 @@ export default function setupIpcHandlers(baseWindow: BaseWindow, temoView: WebCo
   let temoSessionId: string;
   let RecordingBrowserView: WebContentsView;
   let validatedUrl: string;
-  let urls: string = 'https://linear.app/';
+  let urls: string = 'https://github.com/';
   let pageTitle: string = '';
   let RECORDING = false;
 
@@ -88,23 +88,24 @@ export default function setupIpcHandlers(baseWindow: BaseWindow, temoView: WebCo
     //   `);
     // });
 
-    baseWindow.on('resize', () => {
-      frameConfig = calculateFrameConfig(temoView);
-      RecordingBrowserView.setBounds({
-        x: frameConfig.x,
-        y: frameConfig.y,
-        width: frameConfig.width,
-        height: frameConfig.height,
-      });
-    });
+    // baseWindow.on('resize', () => {
+    //   frameConfig = calculateFrameConfig(temoView);
+    //   RecordingBrowserView.setBounds({
+    //     x: frameConfig.x,
+    //     y: frameConfig.y,
+    //     width: frameConfig.width,
+    //     height: frameConfig.height,
+    //   });
+    // });
 
     baseWindow.contentView.addChildView(RecordingBrowserView);
 
     // RecordingBrowserView.setBackgroundColor("#fff");
-    RecordingBrowserView.webContents.openDevTools();
+    // RecordingBrowserView.webContents.openDevTools();
     // updateRecordingBrowserViewBounds();
 
     frameConfig = calculateFrameConfig(temoView);
+    console.log(frameConfig);
     RecordingBrowserView.setBounds({
       x: frameConfig.x,
       y: frameConfig.y,

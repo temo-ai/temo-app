@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import RecorderContent from './RecorderContent';
 import RecorderTabs from './RecorderTabs';
-import {Modal} from '../ui';
+import {Modal} from '../ui/recorderModal';
 import {useHotkeys} from 'react-hotkeys-hook';
 import {Button} from '../ui/button';
 import {useAtom} from 'jotai';
@@ -79,13 +79,11 @@ const Recorder = () => {
         onClose={closeModal}
         modalRef={modalRef}
         style={{
-          maxWidth: modalSize.width + 48,
-          width: modalSize.width + 48,
-          height: modalSize.height + 100,
+          width: modalSize.width + 16,
           backgroundColor: 'transparent',
         }}
       >
-        <div className="w-full bg-gradient-to-b from-[rgba(132,169,140,0.68)] via-[rgba(82,121,111,0.08)] to-white p-2 rounded-xl">
+        <div className="w-full rounded-md bg-gradient-to-b from-[rgba(132,169,140,0.68)] via-[rgba(82,121,111,0.08)] to-white p-2">
           <div className="w-full h-[100px] sticky">
             <nav className="flex h-[40px] w-full flex-nowrap  pt-1 items-center justify-between">
               <div className="flex gap-1 h-full">
@@ -111,7 +109,7 @@ const Recorder = () => {
               setUrl={setUrl}
             />
           </div>
-          <div className="w-[100%] aspect-video overflow-auto  rounded-b-lg bg-white"></div>
+          <div className="w-full aspect-video overflow-auto"></div>
         </div>
       </Modal>
     </>

@@ -40,6 +40,9 @@ export const fetchFolder = (id: number) => ipcRenderer.invoke('fetch-folder', id
 export const deleteFolder = (id: number) => ipcRenderer.invoke('delete-folder', id);
 
 export const onUpdateModalSize = () => ipcRenderer.invoke('update-modal-size');
+export const onUpdateTitle = (callback: (title: string) => void) => {
+  ipcRenderer.on('update-title', (_, title) => callback(title));
+};
 
 export const loadUrl = (url: string) => ipcRenderer.invoke('load-url', url);
 
@@ -59,10 +62,6 @@ export const reloadPage = () => ipcRenderer.invoke('reload-page');
 
 export const onTemoChanged = (callback: () => void) => {
   ipcRenderer.on('temos-changed', callback);
-};
-
-export const onUpdateTitle = (callback: (data: {url: string; title: string}) => void) => {
-  ipcRenderer.on('update-title', (_, data) => callback(data));
 };
 
 export const fetchStepsForTemo = (temoId: number) =>

@@ -1,3 +1,4 @@
+import type React from 'react';
 interface StepCardProps {
   id: number;
   index: number;
@@ -36,9 +37,7 @@ const StepCard: React.FC<StepCardProps> = ({
   return (
     <div className="flex flex-col relative">
       <button
-        className={`rounded-lg outline outline-offset-1 outline-gray-100 border-2 border-red-500 ${
-          isSelected ? 'outline-green-800' : ''
-        }`}
+        className={`rounded-lg border ${isSelected ? 'border-gray-200' : 'border-gray-600'}`}
         onClick={handleClick}
       >
         <img
@@ -48,9 +47,6 @@ const StepCard: React.FC<StepCardProps> = ({
           alt="board"
           className="rounded-lg"
         />
-        <span className="absolute bottom-0 right-0 p-1 text-sm bg-white bg-opacity-75 rounded-full">
-          {index + 1}
-        </span>
       </button>
     </div>
   );

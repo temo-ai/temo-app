@@ -64,13 +64,13 @@ export default function App() {
         <MoveToFolderModal />
         <CommandMenu />
         <DeleteAlert />
-        <div className="w-screen h-full bg-gradient-to-b from-[rgba(132,169,140,0.68)] via-[rgba(82,121,111,0.08)] to-white flex flex-col p-1 pt-0 bg-fixed top-0 left-0 z-0 pb-[12px]">
+        <div className="w-screen h-full bg-gradient-to-b from-[rgba(132,169,140,0.68)] via-[rgba(82,121,111,0.08)] to-white flex flex-col p-2">
           <Tabs />
-          <div className="flex flex-1 bg-background rounded-lg shadow-lg overflow-hidden z-0">
+          <main className="flex flex-1 bg-background rounded-lg shadow-lg overflow-hidden z-0">
             {selectedTabId ? (
               <TemoDetails id={selectedTabId} />
             ) : (
-              <div className="flex flex-1">
+              <>
                 <Sidebar />
                 <div className="flex flex-1 flex-col bg-muted/40">
                   {selectedPage === 'HOME' && <CardGrid />}
@@ -78,9 +78,9 @@ export default function App() {
                   {selectedPage === 'FOLDER' && <FolderSection />}
                   {selectedPage === 'SETTINGS' && <Settings />}
                 </div>
-              </div>
+              </>
             )}
-          </div>
+          </main>
         </div>
       </TooltipProvider>
     </ThemeProvider>

@@ -25,7 +25,7 @@ export const calculateFrameConfig = (temoView: WebContentsView) => {
     width: Math.floor(frameWidth),
     height: Math.floor(frameHeight),
     x: Math.floor((width - frameWidth) / 2),
-    y: Math.floor((height - frameHeight) / 2) + 44,
+    y: Math.floor((height - frameHeight) / 2) + 48,
   };
 
   return frameConfig;
