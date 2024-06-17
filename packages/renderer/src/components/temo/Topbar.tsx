@@ -16,9 +16,17 @@ const TitleInfo = ({
   </div>
 );
 
-const TabButton = ({active, onClick, label}) => (
+const TabButton = ({
+  active,
+  onClick,
+  label,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}) => (
   <Button
-    className={`px-4 py-2`}
+    className="px-4 py-2"
     variant={!active ? 'ghost' : 'default'}
     onClick={onClick}
   >

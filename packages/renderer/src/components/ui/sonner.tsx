@@ -1,4 +1,4 @@
-import {useTheme} from '../theme-provider';
+import {useTheme} from '../helper/theme-provider';
 
 import {Toaster as Sonner} from 'sonner';
 
