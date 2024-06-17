@@ -1,3 +1,5 @@
+[![.github/workflows/ci.yml](https://github.com/temo-ai/temo-app/actions/workflows/ci.yml/badge.svg)](https://github.com/temo-ai/temo-app/actions/workflows/ci.yml)
+
 # Temo
 
 Temo is an Electron-based application that allows users to record their browsing sessions, store the data locally, and process it using AI models from OpenAI, Anthropic, and Google to generate step-by-step guides and documentation.
