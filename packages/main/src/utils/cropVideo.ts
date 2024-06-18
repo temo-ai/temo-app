@@ -1,7 +1,7 @@
 import {writeFile} from 'fs/promises';
 import ffmpeg from 'fluent-ffmpeg';
 import {Readable, Writable} from 'stream';
-import ffmpegStatic from 'ffmpeg-static-electron';
+import {ffmpegPath} from '../utils/ffmpeg-electron';
 
 export const cropVideo = async (
   videoBuffer: Buffer,
@@ -30,7 +30,7 @@ export const cropVideo = async (
     });
 
     ffmpeg(inputStream)
-      .setFfmpegPath(ffmpegStatic.path.replace('app.asar', 'app.asar.unpacked') || '')
+      .setFfmpegPath(ffmpegPath?.replace('app.asar', 'app.asar.unpacked') || '')
       .videoFilters(`crop=${width}:${height}:${x}:${y + 20}`)
       .format('webm')
       .on('end', () => {
