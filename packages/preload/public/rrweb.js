@@ -1083,10 +1083,10 @@ var rrwebRecord = (function () {
             password: true,
           }
         : maskAllInputs === false
-        ? {
-            password: true,
-          }
-        : maskAllInputs;
+          ? {
+              password: true,
+            }
+          : maskAllInputs;
     var slimDOMOptions =
       slimDOM === true || slimDOM === 'all'
         ? {
@@ -1102,8 +1102,8 @@ var rrwebRecord = (function () {
             headMetaVerification: true,
           }
         : slimDOM === false
-        ? {}
-        : slimDOM;
+          ? {}
+          : slimDOM;
     return serializeNodeWithId(n, {
       doc: n,
       mirror,
@@ -2060,8 +2060,8 @@ var rrwebRecord = (function () {
           typeof DragEvent !== 'undefined' && evt instanceof DragEvent
             ? IncrementalSource.Drag
             : evt instanceof MouseEvent
-            ? IncrementalSource.MouseMove
-            : IncrementalSource.TouchMove,
+              ? IncrementalSource.MouseMove
+              : IncrementalSource.TouchMove,
         );
       },
       threshold,
@@ -2460,8 +2460,8 @@ var rrwebRecord = (function () {
           ? void 0
           : _a.Document
         : (_c = (_b = host.ownerDocument) == null ? void 0 : _b.defaultView) == null
-        ? void 0
-        : _c.ShadowRoot;
+          ? void 0
+          : _c.ShadowRoot;
     const originalPropertyDescriptor = Object.getOwnPropertyDescriptor(
       patchTarget == null ? void 0 : patchTarget.prototype,
       'adoptedStyleSheets',
@@ -3861,8 +3861,8 @@ var rrwebRecord = (function () {
             password: true,
           }
         : _maskInputOptions !== void 0
-        ? _maskInputOptions
-        : {password: true};
+          ? _maskInputOptions
+          : {password: true};
     const slimDOMOptions =
       _slimDOMOptions === true || _slimDOMOptions === 'all'
         ? {
@@ -3878,8 +3878,8 @@ var rrwebRecord = (function () {
             headMetaDescKeywords: _slimDOMOptions === 'all',
           }
         : _slimDOMOptions
-        ? _slimDOMOptions
-        : {};
+          ? _slimDOMOptions
+          : {};
     polyfill();
     let lastFullSnapshotEvent;
     let incrementalSnapshotCount = 0;
