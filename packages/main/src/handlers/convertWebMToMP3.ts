@@ -1,11 +1,12 @@
 import ffmpeg from 'fluent-ffmpeg';
-import {ffmpegPath} from '../utils/ffmpeg-electron';
+// @ts-ignore
+import ffmpegPath from 'ffmpeg-static-electron';
 
 export async function convertWebMToMP3(sourcePath: string, destinationPath: string) {
   try {
     await new Promise((resolve, reject) => {
       ffmpeg(sourcePath)
-        .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked') || '')
+        .setFfmpegPath(ffmpegPath?.path?.replace('app.asar', 'app.asar.unpacked') || '')
         .toFormat('mp3')
         .on('error', (err: any) => {
           console.error('Error converting audio:', err);
