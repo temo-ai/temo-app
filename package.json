@@ -43,7 +43,7 @@
     "typecheck:renderer": "tsc --noEmit -p packages/renderer/tsconfig.json",
     "typecheck": "npm run typecheck:main && npm run typecheck:preload && npm run typecheck:renderer",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.js && electron-builder install-app-deps",
-    "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,tsx,json}\"",
+    "format": "npx prettier --write \"**/*.{mjs,cjs,ts,mts,cts,tsx,json}\"",
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "devDependencies": {
