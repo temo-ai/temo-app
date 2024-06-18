@@ -1,3 +1,4 @@
+import type React from 'react';
 import {Trash, MoreVertical} from 'lucide-react';
 
 import {

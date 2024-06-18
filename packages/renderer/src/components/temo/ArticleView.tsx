@@ -1,3 +1,4 @@
+import type React from 'react';
 import {useEffect, useMemo, useState} from 'react';
 import {Editor} from 'novel';
 import {Bot} from 'lucide-react';
@@ -102,9 +103,9 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
     return arr;
   }, [selectedLanguages]);
   return (
-    <div>
-      <div className="border-b border-border">
-        <div className="flex items-center justify-between p-2">
+    <div className="w-full">
+      <div className="border-b border-border w-full">
+        <div className="flex items-center justify-between p-2 w-full">
           <ReusableSelect
             options={languageOptions}
             onChange={handleLanguageSelection1}
@@ -120,8 +121,11 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
           </Toggle>
         </div>
       </div>
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel className="min-w-[800px]">
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="w-full"
+      >
+        <ResizablePanel className="min-w-[800px] w-full">
           {loading ? (
             <SkeletonLoader />
           ) : (

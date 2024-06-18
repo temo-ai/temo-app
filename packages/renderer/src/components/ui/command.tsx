@@ -8,7 +8,9 @@ import {Dialog, DialogContent} from './dialog';
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive> & {
+    className?: string;
+  }
 >(({className, ...props}, ref) => (
   <CommandPrimitive
     ref={ref}
@@ -21,9 +23,11 @@ const Command = React.forwardRef<
 ));
 Command.displayName = CommandPrimitive.displayName;
 
-interface CommandDialogProps extends DialogProps {}
+interface CommandDialogProps extends DialogProps {
+  className?: string;
+}
 
-const CommandDialog = ({children, ...props}: CommandDialogProps) => {
+const CommandDialog = ({children, className, ...props}: CommandDialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
@@ -37,10 +41,13 @@ const CommandDialog = ({children, ...props}: CommandDialogProps) => {
 
 const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> & {
+    className?: string;
+  }
 >(({className, ...props}, ref) => (
   <div
     className="flex items-center border-b px-3"
+    // eslint-disable-next-line react/no-unknown-property
     cmdk-input-wrapper=""
   >
     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
@@ -59,7 +66,9 @@ CommandInput.displayName = CommandPrimitive.Input.displayName;
 
 const CommandList = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.List> & {
+    className?: string;
+  }
 >(({className, ...props}, ref) => (
   <CommandPrimitive.List
     ref={ref}
@@ -72,11 +81,13 @@ CommandList.displayName = CommandPrimitive.List.displayName;
 
 const CommandEmpty = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Empty>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
->((props, ref) => (
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty> & {
+    className?: string;
+  }
+>(({className, ...props}, ref) => (
   <CommandPrimitive.Empty
     ref={ref}
-    className="py-6 text-center text-sm"
+    className={cn('py-6 text-center text-sm', className)}
     {...props}
   />
 ));
@@ -85,7 +96,9 @@ CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 
 const CommandGroup = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Group>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group> & {
+    className?: string;
+  }
 >(({className, ...props}, ref) => (
   <CommandPrimitive.Group
     ref={ref}
@@ -101,7 +114,9 @@ CommandGroup.displayName = CommandPrimitive.Group.displayName;
 
 const CommandSeparator = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator> & {
+    className?: string;
+  }
 >(({className, ...props}, ref) => (
   <CommandPrimitive.Separator
     ref={ref}
@@ -113,7 +128,9 @@ CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
 const CommandItem = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item> & {
+    className?: string;
+  }
 >(({className, ...props}, ref) => (
   <CommandPrimitive.Item
     ref={ref}
@@ -127,7 +144,10 @@ const CommandItem = React.forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 
-const CommandShortcut = ({className, ...props}: React.HTMLAttributes<HTMLSpanElement>) => {
+const CommandShortcut = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement> & {className?: string}) => {
   return (
     <span
       className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
