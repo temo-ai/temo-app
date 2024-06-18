@@ -19,7 +19,7 @@ interface Folder {
 
 export default function FolderList() {
   const folders = useAtomValue<Folder[]>(allFoldersAtom);
-  const [selectedFolder, setSelectedFolder] = useAtom<number | null>(selectedFolderIdAtom);
+  const [selectedFolder, setSelectedFolder] = useAtom<number>(selectedFolderIdAtom);
   const [, setSelectedPage] = useAtom(selectedPageAtom);
   const temos = useAtomValue(allTemosAtom);
 
@@ -36,7 +36,8 @@ export default function FolderList() {
       await deleteFolder(folderId);
       fetchFolders();
       toast.success('Collection deleted successfully');
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error);
       toast.error(error.message);
     }
   };

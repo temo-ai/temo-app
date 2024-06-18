@@ -6,6 +6,7 @@ import {
   fetchTemo as fetchTemoPreload,
   fetchFolders as fetchFoldersPreload,
   deleteFolder as deleteFolderPreload,
+  // @ts-ignore
 } from '#preload';
 
 // Create a Jotai store instance
@@ -147,10 +148,10 @@ export const selectedPageAtom = atom<
 >('HOME');
 
 // Atom to store the selected tab ID
-export const selectedTabIdAtom = atom<number | null>(null);
+export const selectedTabIdAtom = atom<number>(0);
 
 // Atom to store the selected folder ID
-export const selectedFolderIdAtom = atom<number | null>(null);
+export const selectedFolderIdAtom = atom<number>(0);
 
 // Atom to store all tabs
 export const allTabsAtom = atom<{id: number; name: string; folderId: number}[]>([]);
@@ -171,7 +172,7 @@ export const sortOrderAtom = atom<'updatedAt' | 'createdAt' | 'title'>('updatedA
 export const selectedTemoAtom = atom(get => {
   const temos = get(allTemosAtom);
   const selectedId = get(selectedTabIdAtom);
-  return temos[selectedId] || null;
+  return temos?.[selectedId];
 });
 
 export const allTemosCountAtom = atom(get => {

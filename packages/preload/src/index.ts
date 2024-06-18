@@ -2,7 +2,7 @@ import {sha256sum} from './nodeCrypto';
 import {versions} from './versions';
 import {ipcRenderer} from 'electron';
 export {sha256sum, versions};
-import type {Config, ChatHistoryItem} from '../../renderer/src/utils/atoms';
+import type {Config} from '../../renderer/src/utils/atoms';
 
 export const startRecording = () => ipcRenderer.invoke('start-recording');
 export const stopRecording = () => ipcRenderer.invoke('stop-recording');
@@ -20,14 +20,12 @@ export const saveScreenVideo = (videoBuffer?: ArrayBuffer) =>
 
 export const deleteAllTemos = () => ipcRenderer.invoke('delete-all-temos');
 export const fetchTemos = () => ipcRenderer.invoke('fetch-temos');
-export const fetchTemo = (id: string) => ipcRenderer.invoke('fetch-temo', id);
+export const fetchTemo = (id: number) => ipcRenderer.invoke('fetch-temo', id);
 export const deleteTemo = (id: number) => ipcRenderer.invoke('delete-temo', id);
 export const updateTemo = (id: number, newName: string) =>
   ipcRenderer.invoke('update-temo', id, newName);
-export const updateTemoChatHistory = (params: {
-  sessionId: string;
-  chatHistory: ChatHistoryItem[];
-}) => ipcRenderer.invoke('update-temo-chat-history', params);
+export const updateTemoChatHistory = (params: {sessionId: string; chatHistory: any}) =>
+  ipcRenderer.invoke('update-temo-chat-history', params);
 export const createFolder = (folderName: string) => ipcRenderer.invoke('create-folder', folderName);
 export const fetchFolders = () => ipcRenderer.invoke('fetch-folders');
 export const updateTemoFolder = (temoId: number, folderId: number) =>

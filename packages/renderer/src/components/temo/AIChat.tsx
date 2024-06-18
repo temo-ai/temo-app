@@ -15,7 +15,7 @@ import {fetchTemo} from '../../utils/atoms';
 import {Toggle} from '../ui/toggle';
 
 export default function AIChat({setArticle}: AIChatProps) {
-  const [chatInput, setChatInput] = useState('');
+  const [chatInput, setChatInput] = useState<string>('');
   const [localChatHistory, setLocalChatHistory] = useState<ChatHistoryItem[]>([]);
   const [generateNew, setGenerateNew] = useState(false);
   const selectedTabId = useAtomValue(selectedTabIdAtom);
@@ -48,7 +48,7 @@ export default function AIChat({setArticle}: AIChatProps) {
     return [];
   };
 
-  const handleSuccess = (data, message, newUserMessage) => {
+  const handleSuccess = (data: string, message: string, newUserMessage: ChatHistoryItem) => {
     setArticle(data);
     const newAssistantMessage = {
       role: 'assistant',
@@ -65,9 +65,7 @@ export default function AIChat({setArticle}: AIChatProps) {
     });
     return `${message} successfully!`;
   };
-  const handleError = error => error?.message;
-
-  console.log({localChatHistory, chatInput});
+  const handleError = (error: any) => error?.message;
 
   const updateArticle = async () => {
     if (!chatInput) return;
@@ -84,7 +82,7 @@ export default function AIChat({setArticle}: AIChatProps) {
     setLoading(true);
 
     const myPromise = generateNew
-      ? generateArticle({sessionId, chatInput})
+      ? generateArticle({sessionId, customPrompt: chatInput})
       : updateArticlePreload({
           sessionId,
           article: guide,

@@ -30,10 +30,9 @@ export const TranslationSettings = () => {
       });
 
       toast.success('Translation config saved successfully!');
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-
-      toast.error(error.message);
+      toast.error(error?.message || 'Error saving translation config');
     }
   };
   return (

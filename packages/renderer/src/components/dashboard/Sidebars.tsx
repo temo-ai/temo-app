@@ -18,7 +18,7 @@ import temoLight from '../../../assets/temo-light.png';
 import temoDark from '../../../assets/temo-dark.png';
 
 export default function Sidebar() {
-  const [, setSelectedFolder] = useAtom<number | null>(selectedFolderIdAtom);
+  const [, setSelectedFolder] = useAtom<number>(selectedFolderIdAtom);
   const allTemosCount = useAtomValue(allTemosCountAtom);
   return (
     <>
@@ -37,13 +37,13 @@ export default function Sidebar() {
             link="HOME"
             count={allTemosCount}
             icon={<Home className="w-4 h-4" />}
-            onClick={() => setSelectedFolder(null)}
+            onClick={() => setSelectedFolder(0)}
           />
           <SidebarItem
             name="Recent"
             link="RECENT"
             icon={<Clock className="w-4 h-4" />}
-            onClick={() => setSelectedFolder(null)}
+            onClick={() => setSelectedFolder(0)}
           />
 
           <Separator />

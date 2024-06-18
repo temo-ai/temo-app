@@ -11,7 +11,7 @@ const FolderSection = () => {
   useEffect(() => {
     const fetchFolderTemo = async () => {
       try {
-        const FolderTemos = await fetchTemoFolder(selectedFolder.id);
+        const FolderTemos = await fetchTemoFolder(Number(selectedFolder?.id));
         setFolderTemos(FolderTemos);
       } catch (error) {
         console.log('Failed to fetch', error);

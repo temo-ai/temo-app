@@ -12,6 +12,8 @@ import {
   allFoldersAtom,
   allTabsAtom,
 } from '../../utils/atoms';
+
+import type {Temo} from '../../utils/atoms';
 import {useSetAtom, useAtomValue} from 'jotai';
 import {Card, CardHeader, CardTitle, CardDescription, CardFooter} from '../ui/card';
 
@@ -28,6 +30,10 @@ export const Onboarding = () => {
   const allFolders = useAtomValue(allFoldersAtom);
   const [step, setStep] = useState(0);
 
+  const handleIsPublished = (temos: Temo[]) => {
+    return temos?.every((temo: Temo) => temo.isPublished === 0);
+  };
+
   useEffect(() => {
     const temoLength = Object.keys(allTemos).length;
     if (!config?.provider || !config?.model) {
@@ -42,7 +48,7 @@ export const Onboarding = () => {
     } else if (!config?.blobToken) {
       console.log('no blob token', 4);
       setStep(4);
-    } else if (Object.keys(allTemos).every(temoId => allTemos[temoId].isPublished === 0)) {
+    } else if (handleIsPublished(Object.values(allTemos))) {
       console.log('No published', 5);
       setStep(5);
     } else {
@@ -68,7 +74,7 @@ export const Onboarding = () => {
         break;
       case 5: {
         const firstUnpublishedTemoId = Object.keys(allTemos).find(
-          temoId => !allTemos[temoId].isPublished,
+          (temoId: string) => !allTemos[Number(temoId)].isPublished,
         );
         if (firstUnpublishedTemoId) {
           setAllTabs(prev => {
@@ -79,9 +85,9 @@ export const Onboarding = () => {
                 {
                   id: Number(firstUnpublishedTemoId),
                   name:
-                    allTemos[firstUnpublishedTemoId]?.title ||
-                    allTemos[firstUnpublishedTemoId]?.name,
-                  folderId: allTemos[firstUnpublishedTemoId]?.folderId,
+                    allTemos[Number(firstUnpublishedTemoId)]?.title ||
+                    allTemos[Number(firstUnpublishedTemoId)]?.name,
+                  folderId: allTemos[Number(firstUnpublishedTemoId)]?.folderId,
                 },
               ];
             }

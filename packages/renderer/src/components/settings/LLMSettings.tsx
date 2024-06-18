@@ -53,11 +53,12 @@ export function LLMSettings() {
   };
 
   const handleTestLLMConnection = async () => {
+    const provider = config?.provider.toLowerCase();
+    const accessor = `${provider}ApiKey`;
     const myPromise = testLLMConnectionPreload({
       provider: config?.provider,
       model: config?.model,
-      [`${config?.provider.toLowerCase()}ApiKey`]:
-        config[`${config?.provider.toLowerCase()}ApiKey`],
+      [accessor]: config?.[accessor as keyof Config],
     });
     toast.promise(myPromise, {
       success: data => {
@@ -102,7 +103,7 @@ export function LLMSettings() {
                 setConfig({
                   ...config,
                   provider: value,
-                  model: MODELS[value][0], // Reset model when provider changes
+                  model: MODELS?.[value]?.[0], // Reset model when provider changes
                 });
               }}
             >
@@ -131,7 +132,7 @@ export function LLMSettings() {
                 });
               }}
             >
-              {MODELS[config?.provider]?.map(model => (
+              {MODELS?.[config?.provider]?.map(model => (
                 <ToggleGroupItem
                   key={model}
                   value={model}
@@ -169,7 +170,7 @@ export function LLMSettings() {
   );
 }
 
-const MODELS = {
+const MODELS: {[key: string]: string[]} = {
   OPENAI: ['GPT-4-O', 'GPT-4-TURBO'],
   GOOGLE: ['GEMINI-1.5-FLASH-LATEST', 'GEMINI-PRO-VISION'],
   ANTHROPIC: ['CLAUDE-3-OPUS', 'CLAUDE-3-SONNET', 'CLAUDE-3-HAIKU'],

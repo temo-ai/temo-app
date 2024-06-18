@@ -9,20 +9,20 @@ const PublishToMarkdown = ({temoId}: {temoId: number}) => {
   const [config] = useAtom(configAtom);
 
   const publishToMarkdown = async () => {
-    if (!config?.blobToken) {
-      toast.error('Vercel Blob token not found, please set it in the settings');
-      return;
-    }
-    const publishPromise = publishToMarkdown({
-      temoId,
-    });
-    toast.promise(publishPromise, {
-      loading: 'Publishing to Vercel...',
-      success: 'Temo published to Vercel successfully!',
-      error: 'Error publishing to Vercel',
-    });
+    // if (!config?.blobToken) {
+    //   toast.error('Vercel Blob token not found, please set it in the settings');
+    //   return;
+    // }
+    // const publishPromise = publishToMarkdown({
+    //   temoId,
+    // });
+    // toast.promise(publishPromise, {
+    //   loading: 'Publishing to Vercel...',
+    //   success: 'Temo published to Vercel successfully!',
+    //   error: 'Error publishing to Vercel',
+    // });
     try {
-      await publishPromise;
+      // await publishPromise;
       fetchTemo(temoId);
     } catch (error) {
       console.error(error);
