@@ -32,7 +32,7 @@ export const cropVideo = async (
 
     ffmpeg(inputStream)
       .setFfmpegPath(ffmpegPath?.path?.replace('app.asar', 'app.asar.unpacked') || '')
-      .videoFilters(`crop=${width}:${height}:${x}:${y + 20}`)
+      .videoFilters(`crop=${width}:${height}:${x}:${y}`)
       .format('webm')
       .on('end', () => {
         const outputBuffer = Buffer.concat(chunks);

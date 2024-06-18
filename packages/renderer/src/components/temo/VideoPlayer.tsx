@@ -3,7 +3,7 @@ import {userDataPathAtom} from '../../utils/atoms';
 
 const VideoPlayer = ({sessionId}: {sessionId: string}) => {
   const userDataPath = useAtomValue(userDataPathAtom);
-  const videoUrl = `media://${userDataPath}/temos/${sessionId}/video-cropped.webm`;
+  const videoUrl = `video://${userDataPath}/temos/${sessionId}/video-cropped.webm`;
   console.log('videoUrl', videoUrl);
 
   return (
