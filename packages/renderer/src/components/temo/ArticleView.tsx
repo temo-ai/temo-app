@@ -1,8 +1,7 @@
 import type React from 'react';
 import {useEffect, useMemo, useState} from 'react';
-import {Editor} from 'novel';
+import Editor from './Editor';
 import {Bot} from 'lucide-react';
-import {convertToMarkdown} from '../../utils/markdown';
 import {toast} from 'sonner';
 import {Skeleton} from '../ui/skeleton';
 import {ReusableSelect} from '../helper/ReusableSelect';
@@ -39,6 +38,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
   const [config] = useAtom(configAtom);
   const [loading, setLoading] = useState(false);
   const [split, setSplit] = useState(false);
+
   const selectedLanguages = config?.selectedLanguages;
 
   useEffect(() => {
@@ -47,17 +47,13 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
     }
   }, [selectedArticle1]);
 
-  const handleUpdate = async () => {
-    const guideContentJson = localStorage.getItem('novel__content');
-    if (guideContentJson) {
-      const guideContent = JSON.parse(guideContentJson);
-      const markdownContent = convertToMarkdown(guideContent);
-      const result = await saveGuide(sessionId, markdownContent);
-      if (result.success) {
-        toast.success('Guide saved successfully!');
-      } else {
-        toast.error('Failed to save guide.');
-      }
+  const handleUpdate = async (doc: any) => {
+    try {
+      await saveGuide(sessionId, doc);
+      // toast.success('Guide saved successfully!');
+    } catch (error) {
+      toast.error('Failed to save guide.');
+      console.error(error);
     }
   };
 
@@ -104,7 +100,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
   }, [selectedLanguages]);
   return (
     <div className="w-full">
-      <div className="border-b border-border w-full">
+      <div className="border-b border-border w-full flex flex-col">
         <div className="flex items-center justify-between p-2 w-full">
           <ReusableSelect
             options={languageOptions}
@@ -131,11 +127,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
           ) : (
             <Editor
               key={selectedArticle1}
-              completionApi=""
-              className="bg-background h-[calc(100vh-180px)] overflow-y-scroll"
               defaultValue={selectedArticle1 || ''}
-              debounceDuration={2000}
-              onDebouncedUpdate={() => handleUpdate()}
+              onChange={handleUpdate}
             />
           )}
         </ResizablePanel>

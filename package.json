@@ -1,7 +1,7 @@
 {
   "name": "temo",
   "description": "Temo",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "type": "module",
   "author": {
@@ -73,6 +73,12 @@
     "vitest": "1.6.0"
   },
   "dependencies": {
+    "@bangle.dev/base-components": "^0.32.1",
+    "@bangle.dev/core": "^0.32.1",
+    "@bangle.dev/markdown": "^0.32.1",
+    "@bangle.dev/pm": "^0.32.1",
+    "@bangle.dev/react": "^0.32.1",
+    "@bangle.dev/react-menu": "^0.32.1",
     "@langchain/anthropic": "^0.1.16",
     "@langchain/community": "^0.0.52",
     "@langchain/core": "^0.1.61",
