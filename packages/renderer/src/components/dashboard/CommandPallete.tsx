@@ -13,7 +13,6 @@ import {
   allTabsAtom,
   selectedSettingAtom,
 } from '../../utils/atoms';
-
 import type {allTemosType} from '../../utils/atoms';
 import {useAtom, useSetAtom} from 'jotai';
 
@@ -296,7 +295,7 @@ const TemosGroup: React.FC<{
 
 const Footer: React.FC = () => (
   <div className="flex justify-between items-center p-2 py-0 pt-1 text-xs text-gray-700 bottom-0">
-    <div>logo</div>
+    <div>Temo</div>
     <div className="flex gap-x-3">
       <div className="py-1">
         Open Application{' '}

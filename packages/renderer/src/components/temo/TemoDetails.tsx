@@ -60,7 +60,7 @@ const TemoDetails = ({id}: {id: number}) => {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        <div className="rounded-lg border border-border w-full flex flex-col justify-center items-center">
+        <div className="rounded-lg border border-border w-full">
           {activeTab === 'video' ? (
             <VideoPlayer sessionId={sessionId} />
           ) : activeTab === 'player' ? (

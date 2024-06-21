@@ -37,7 +37,7 @@ const TemoPlayer: React.FC<TemoPlayerProps> = ({
           target: playerElement,
           props: {
             events: events,
-            width: customWidth,
+            width: customWidth - 40,
             height: customHeight,
             showController: false,
             showDebug: false,
@@ -56,7 +56,7 @@ const TemoPlayer: React.FC<TemoPlayerProps> = ({
     <div
       ref={playerContainerRef}
       id="rrweb-player"
-      className="flex w-[calc(100vw-300px)] h-full bg-background"
+      className="flex h-full bg-background"
     />
   );
 };

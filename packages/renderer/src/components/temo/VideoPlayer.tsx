@@ -7,19 +7,17 @@ const VideoPlayer = ({sessionId}: {sessionId: string}) => {
   console.log('videoUrl', videoUrl);
 
   return (
-    <div className="w-[calc(100vw-300px)] aspect-video items-center justify-center flex">
-      <video
-        id="my-video"
-        autoPlay
-        muted
-      >
-        <source
-          src={videoUrl}
-          type="video/webm"
-        />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+    <video
+      id="my-video"
+      autoPlay
+      muted
+      className="w-full h-full p-8"
+    >
+      <source
+        src={videoUrl}
+        type="video/webm"
+      />
+    </video>
   );
 };
 

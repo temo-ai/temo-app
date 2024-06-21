@@ -9,7 +9,7 @@ import autoprefixer from 'autoprefixer';
 
 const PACKAGE_ROOT = __dirname;
 const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
-console.log(PACKAGE_ROOT, process.env.MODE);
+
 /**
  * @type {import('vite').UserConfig}
  * @see https://vitejs.dev/config/
